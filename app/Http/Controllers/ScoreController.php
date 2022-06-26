@@ -68,7 +68,7 @@ class ScoreController extends Controller
                 if ($student->mailStatus) {
                     $scores = Score::where('student_id', $request->student_id)->get();
                     $mail = new SendMail($scores);
-                    Mail::to($student->mail_register)->send($mail);
+                    Mail::to($student->mail_register)->queue($mail);
                     return redirect()->back()
                         ->with(
                             'message',

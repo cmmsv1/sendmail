@@ -58,7 +58,7 @@ class RegisterServiceController extends Controller
             } else {
                 $message = 'Bạn đã có điểm ' . count($scores) . ' môn. Chúng tôi sẽ gửi điểm cập nhật liên tục qua email bạn đã đăng ký. Vui lòng check email !';
                 $mail = new SendMail($scores);
-                Mail::to($request->email)->send($mail);
+                Mail::to($request->email)->queue($mail);
             }
             return view('result.success')
                 ->with(compact('message'));
